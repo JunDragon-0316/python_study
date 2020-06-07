@@ -1,0 +1,142 @@
+## 학습목표
+ 1. dictionary, set에 대해 이해 및 실습
+
+### **dictionary**
+ + 키와 값을 갖는 데이터 구조
+ + 키는 내부적으로 hash값으로 저장
+ + 순서를 따지지 않음. 즉, 인덱스가 없음
+ 
+a = {'Korea' : 'seoul', 
+     'Canada': 'Ottawa', 
+     'USA' : 'Washington D.C'}
+
+b = {}
+
+type(a) = dict
+
+b = {0: 1, 1:6, 7:9, 8:10}
+print(b[0]) = 1
+print(b[7]) = 9....
+
++ **항목 추가 및 변경**
+ - 기존에 키가 존재 하면, 새로운 값으로 업데이트
+ - 존재하지 않으면, 새로운 키, 값 생성
+
+초기값 설정시 {} , 추가시 [] , key 값은 중복 x
+
+a = {'Korea' : 'seoul', 
+     'Canada': 'Ottawa', 
+     'USA' : 'Washington D.C'}
+
+a['Japan'] = 'Tokyo'
+a['China'] = 'Beijing'
+
+print(a) = {'Korea': 'seoul', 
+            'Canada': 'Ottawa', 
+            'USA': 'Washington D.C', 
+            'Japan': 'Tokyo', 
+            'China': 'Beijing'}
+            
+            
++ **update()**
+ * 두 딕셔너리를 병합함
+ * 겹치는 키가 있다면 parameter로 전달되는 키 값이 overwrite된다.
+
+a = {'a':1, 'b':2, 'c': 3}
+b = {'a':1, 'd':4, 'e': 5}
+
+a.update(b)
+
+print(a) = {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+
+* **key삭제**
+ - del 키워드 사용
+ 
+a = {'a':1, 'b':2, 'c': 3}
+print(a) = {'a': 1, 'b': 2, 'c': 3}
+
+a.pop('b')
+print(a) = {'a': 1, 'c': 3}
+
+del a['b']
+print(a) = {'a': 1, 'c': 3}
+
+* **clear()**
+ + 딕셔너리의 모든 값을 초기화
+ 
+print(a) = {'a': 1, 'c': 3}
+a.clear()
+print(a) = {}
+
+* **in**
+ + key값 존재 확인
+ + O(1) 연산 - 딕셔너리의 크기와 관계없이 항상 연산의 속도가 일정하다는 의미
+ 
+ a = {'a':1, 'b':2, 'c': 3}
+print(a) = {'a': 1, 'b': 2, 'c': 3}
+b = {1, 2, 3, 4, 5, 6, 7, 9, 10, 100}
+
+# 전체 중에서 검색하므로 검색이 느림
+
+print(100 in b) = True
+
+# key 검색시 속도가 더 빠름
+
+print('b' in a) = True
+
+* **value access**
+ + dict[key]로 접급, 키가 없는 경우 에러 발생 
+ + .get() 함수로 접근, 키가 없는 경우 None반환
+
+print(a.get('d')) = None
+print(a['d']) = 에러 , KeyError: 'd'
+
+#### **모든 keys, values 접근**
+ + keys() - 키만 반환
+ + values() - 값만 반환
+ + items() - 키, 값의 튜플을 반환
+ 
+print(a) = {'a': 1, 'b': 2, 'c': 3}
+print(list(a.keys())) = ['a', 'b', 'c']
+print(list(a.values())) = [1, 2, 3]
+
+list(a.items()) = [('a', 1), ('b', 2), ('c', 3)]
+
+### **set**
+ + dictionary에서 key만 활용하는 데이터 구조로 이해
+ + 수학에서의 집합과 동일한 개념
+
+중복 허용 x 순서 x
+
+a ={1, 1, 2, 3, 3, 4, 1, 5}
+print(a)
+
+print(a[0])
+
+* **set()으로 집합으로 변환**
+
+a =  set()
+print(type(a)) = <class 'set'>
+
+a = [1, 1, 2, 3, 3, 4, 1, 5]
+print(a) = [1, 1, 2, 3, 3, 4, 1, 5]
+
+b =  set(a)
+print(b) = {1, 2, 3, 4, 5}
+
++ **set operations**
+ - 수학 연산과 동일
+ - 교집합, 합집합, 차집합 등 지원
+ 
+a = {1, 2, 3}
+b = {2, 3, 4}
+
+print(a.union(b)) # 합집합 = {1, 2, 3, 4}
+print(a.intersection(b)) # 교집합 = {2, 3}
+print(a.difference(b)) # 차집합 = {1}
+print(a.issubset(b)) # 부분 집합 = False
+
+{1, 2, 3, 4}
+{2, 3}
+{1}
+False
