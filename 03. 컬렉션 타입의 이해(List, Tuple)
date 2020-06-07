@@ -1,0 +1,240 @@
+## 학습목표
+ 1. list, tuple에 대해 이해 및 실습
+### **리스트 & 튜플**
+ * 복수개의 값을 담을 수 있는 데이터 구조
+ * 실생활에서 사용하는 리스트(학생 리스트, 성적 리스트 등등)과 동일한 의미로 이해
+ * list - mutable    (생성된 후에 변경 가능)  
+ * tuple - immutable (생성된 후에 변경 불가능)  
+ 
+ #### **리스트 초기화**
+ - [] 안에 값을 담아서 생성
+ - list() 함수로 생성
+ - str.split()함수로 생성
+ 
+* **list() 함수**
+ + 다른 데이터 타입을 리스트로 변환할 때도 사용
+ 
+a = []
+print(a) = []
+
+a = [1, 2, 3, 5, 10]
+print(a) = [1, 2, 3, 5, 10]
+
+a = ['korea', 'U.S.A', 1 ,234, [345, 567]]
+print(a) = ['korea', 'U.S.A', 1, 234, [345, 567]]
+
+빈타입, 숫자, 숫자 + 문자, 숫자 + 문자 + 리스트 여러가지 가능
+ 
+a = 'hello world'
+b = list(a)
+print(b) = ['h', 'e', 'l', 'l', 'o', ' ', 'w', 'o', 'r', 'l', 'd']
+
+c = (1, 2, 3)
+d = list(c)
+
+print(d) = [1, 2, 3]
+
++ **string split 함수**
+ * 구분자로 구분되는 리스트를 반환 (빈번히 사용 됨)
+
+a = 'hello world nice weather'
+b = a.split()
+
+print(b) = ['hello', 'world', 'nice', 'weather']
+
+#### **리스트 indexing**
+ * 문자열의 인덱싱과 동일하게 동작
+ * [] 연산자를 이용하여 항목 얻어오기
+ * [i] - i번째 원소를 반환
+ * i가 음수인 경우도 가능하며 마지막원소가 -1로 하여 앞으로 갈때마다 1씩 감소함
+ 
+a = [1, 2, 3, 4, 5, 6]
+print(a[2]) = 3
+print(a[5]) = 6
+print(a[-1]) = 6
+
+#### **리스트 개별 아이템에 접근**
+ - 인덱스에 접근하여 값을 업데이트 가능
+ - *문자열은 불변 객체(immutable)
+
+a = 'hello world'
+print(a[0])
+a[0] = 'j'
+TypeError: 'str' object does not support item assignment
+
+a = 'hello world'
+print(a[0]) = h
+
+b = 'jello world'
+c = 'j' + a[1:]
+
+d= a.replace('h', 'j')
+print(d) = jello world
+print(a) = hello world
+
+a = [1, 2, 3, 4, 5]
+a[0] = 100
+a[-1] = 10
+print(a) = [100, 2, 3, 4, 10]
+
+#### **리스트 slicing**
+ - 문자열 슬라이싱과 동일하게 동작
+ - 슬라이싱의 결과 역시 list!
+ 
+a = [1, 2, 3, 4, 5, 6, 7, 8]
+print(a[4:7]) = [5, 6, 7]
+print(a[:7]) = [1, 2, 3, 4, 5, 6, 7]
+print(a[3:]) = [4, 5, 6, 7, 8]
+print(a[:]) = [1, 2, 3, 4, 5, 6, 7, 8]
+
+# slicing
+# start:end:increment(1)
+# 시작, 끝, 건너뛰는 숫자 = 기본값 1
+
+print(a[1:7:2]) = [2, 4, 6]
+print(a[1:7:3]) = [2, 5]
+print(a[1:7:5]) = [2, 7]
+print(a[1:7:6]) = [2]
+
+### list 멤버 함수
+ - 생성된 리스트 객체에 동작하는 함수
+ - 향후, 클래스와 멤버 함수 개념을 이해할 예정
+ 
+* **append()**
+ + 리스트의 끝에 항목을 추가함
+ 
+ a = [1, 2, 3, 4, 5]
+a.append(10)
+
+print(a) = [1, 2, 3, 4, 5, 10]
+
++ **extend()**
+ * 리스트를 연장
+ * += 로도 가능함
+ 
+a = [1, 2, 3, 4, 5]
+b = [6, 7, 8, 9, 10]
+
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+a.extend(b)
+print(a) = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+a += b
+print(a) = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
++ **insert()로 항목추가**
+ * 리스트의 원하는 위치에 추가 가능
+ * 앞에 인덱스를, 뒤에 아이템을 명시
+ 
+a = [1, 2, 3, 4, 5]
+a.insert(1, 40)
+
+print(a) = [1, 40, 2, 3, 4, 5]
+
++ **remove()**
+ * 값으로 항목 삭제
+ 
+ a = [1, 2, 40, 40, 4, 5]
+a.remove(40)
+
+print(a) = [1, 2, 40, 4, 5] 
+
+같은숫자 반복시 맨앞의 40만 지움
+
+a.remove(10)
+ValueError: list.remove(x): x not in list
+리스트에 숫자가 없을시 오류 발생
+
++ **pop()**
+  - 지우고자 하는 아이템을 반환 후, 삭제
+  
+a = [1, 2, 3, 4, 5]
+a.pop() = 값을 쓰지 않을 경우 마지막 숫자 제거
+d = a.pop(2)
+
+print(a) = [1, 2, 3, 4]
+print(d) = 3
+
++ **index()**
+ * 찾고자 하는 값의 인덱스 반환
+ 
+a = [2, 5, 7, 9, 10, 11]
+a.index(10) = 4
+
+* **in 키워드**
+ + 리스트 내에 해당 값이 존재하는지 확인
+ + value in [list]
+ + True, False 중 한가지로 반환
+ 
+a = [1, 2, 3, 4, 5, 10]
+b = 7
+
+c = b in a # False
+print(c) = False
+
+a = [1, 2, 3, 4, 5, 10]
+b = 10
+
+c = b in a 
+print(c) = True
+
+* **list 정렬**
+ + sort() -> 리스트 자체를 내부적으로 정렬
+ + sorted() -> 리스트의 정렬된 복사본을 반환
+ 
+a = [9, 10, 7, 19, 1, 2, 22, 23, 7, 8]
+a.sort()
+
+print(a) = [1, 2, 7, 7, 8, 9, 10, 19, 22, 23]
+
+a = [9, 10, 7, 19, 1, 2, 22, 23, 7, 8]
+a.sort(reverse=True)
+
+print(a) = [23, 22, 19, 10, 9, 8, 7, 7, 2, 1]
+
+a = [9, 10, 7, 19, 1, 2, 22, 23, 7, 8]
+a.sort(reverse=True)
+
+b = sorted(a)
+print(a) = [23, 22, 19, 10, 9, 8, 7, 7, 2, 1]
+print(b) = [1, 2, 7, 7, 8, 9, 10, 19, 22, 23]
+
+### **tuple**
+ - 리스트와 같이 복수개의 값을 갖는 컬렉션 타입
+ - 생성된 후 변경이 불가능
+ 
+a = [1, 2 ,3]
+b = (1, 2, 3)
+
+print(type(a)) = <class 'list'>
+print(type(b)) = <class 'tuple'>
+
+a[0] = 100
+print(a) = [100, 2, 3]
+
+b[0] = 100
+print(b) = TypeError: 'tuple' object does not support item assignment
+에러 튜블은 치환이 불가능
+
+#### **tuple unpacking**
+ - 튜플의 값을 차례대로 변수에 대입
+
+여러개의 변수에 값을 대입하기 쉬움
+
+a, b = 100, 200
+print(a, b) = 100 200
+
+a = 5
+b = 4
+
+print(a, b) = 5 4
+
+#logic
+# temp = a
+# a = b
+# b = temp
+
+a, b = b, a
+
+print(a, b) = 4 5
